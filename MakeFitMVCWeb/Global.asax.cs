@@ -17,6 +17,7 @@ namespace MakeFitMVCWeb
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            Bootstrapper.Initialise();
         }
 
         protected void Session_Start(Object sender, EventArgs e)
@@ -29,14 +30,14 @@ namespace MakeFitMVCWeb
         void Application_Error(Object sender, EventArgs e)
         {
             var exception = Server.GetLastError();
-            var route = new RouteData();
-            route.Values.Add("controller", "home");
-            route.Values.Add("action", "Error");
-            route.Values.Add("exception", exception);
-            Response.TrySkipIisCustomErrors = true;
-            IController controller = new HomeController();
-            controller.Execute(new RequestContext(new HttpContextWrapper(Context), route));
-            Response.End();
+            //var route = new RouteData();
+            //route.Values.Add("controller", "home");
+            //route.Values.Add("action", "Error");
+            //route.Values.Add("exception", exception);
+            //Response.TrySkipIisCustomErrors = true;
+            ////IController controller = new HomeController();
+            ////controller.Execute(new RequestContext(new HttpContextWrapper(Context), route));
+            //Response.End();
 
         }
     }

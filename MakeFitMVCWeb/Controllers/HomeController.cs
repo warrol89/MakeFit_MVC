@@ -1,4 +1,7 @@
-﻿using System;
+﻿using MakeFitMVC.Business;
+using MakeFitMVC.Business.Interface;
+using MakeFitMVCWeb.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +11,13 @@ namespace MakeFitMVCWeb.Controllers
 {
     public class HomeController : Controller
     {
+        public ILogin _loginService;
+
+        public HomeController(Login loginService)
+        {
+            _loginService = loginService;
+
+        }
         [HandleError]
         public ActionResult Index()
         {
@@ -26,6 +36,18 @@ namespace MakeFitMVCWeb.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
+            return View();
+        }
+
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(LoginModel Model)
+        {
+            _loginService.CheckLoginDetails();
             return View();
         }
     }
